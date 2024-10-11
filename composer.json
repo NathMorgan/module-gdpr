@@ -1,0 +1,22 @@
+{
+    "name": "techdemo/module-gdpr",
+    "description": "Magento 2 Right to Forget technical test module",
+    "type": "magento2-module",
+    "license": [],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ruroc\\GDPR\\": ""
+        }
+    }
+}
+

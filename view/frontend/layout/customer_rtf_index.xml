@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components"
+                   name="customer_page_head_components"
+                   template="Magento_Customer::js/components.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-right-to-forget-link">
+            <arguments>
+                <argument name="is_highlighted" xsi:type="boolean">true</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Ruroc\GDPR\Block\Account\RightToForget"
+                   name="rtf-account-details"
+                   template="Ruroc_GDPR::account/rtf/account-details.phtml">
+                <arguments>
+                    <argument name="rightToForgetViewModel" xsi:type="object">Ruroc\GDPR\ViewModel\Customer\Account\RightToForget</argument>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="rtfwrapper" xsi:type="array">
+                                <item name="component" xsi:type="string">Ruroc_GDPR/js/view/account/rtf/account-details</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Ruroc_GDPR/account-details</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

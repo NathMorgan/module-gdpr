@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ruroc"
+             translate="label"
+             sortOrder="250">
+            <label>Ruroc</label>
+        </tab>
+        <section id="ruroc"
+                 translate="label"
+                 type="text"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>GDPR</label>
+            <tab>ruroc</tab>
+            <resource>Ruroc_GDPR::config_gdpr</resource>
+            <group id="right_to_forget"
+                   translate="label"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Right to Forget</label>
+                <field id="enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       canRestore="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <comment>Shows the right to forget functionality on the customer account page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Magento\Customer\Model\Config\Backend\CreateAccount\DisableAutoGroupAssignDefault</backend_model>
+                </field>
+                <field id="request_email"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="20"
+                       showInDefault="1"
+                       canRestore="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Send Request To Email Address</label>
+                    <comment>Set the email address where right to forget emails get sent to</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,22 @@
+<?php
+/** @var \Ruroc\GDPR\Block\Account\RightToForget $block  */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Ruroc\GDPR\ViewModel\Customer\Account\RightToForget $rightToForgetViewModel */
+
+$currentCustomer = $block->getCustomerRepository();
+$rightToForgetViewModel = $block->getData('rightToForgetViewModel');
+$rightToForgetViewModel->setCustomer($currentCustomer);
+?>
+<div id="rtfwrapper" data-bind="scope:'rtfwrapper'" class="rtf-wrapper">
+    <script>
+        window.rtfConfig = <?= /* @noEscape */ $rightToForgetViewModel->getRtfConfig() ?>
+    </script>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+    {
+        "#rtfwrapper": {
+            "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+        }
+    }
+    </script>
+</div>

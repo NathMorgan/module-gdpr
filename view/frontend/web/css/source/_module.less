@@ -1,0 +1,63 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .box-rtf {
+        > [class*="title"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: initial;
+            border-bottom: 1px solid #eee;
+        }
+
+        a {
+            &:hover {
+                color: #818181;
+            }
+
+            &:visited {
+                color: black;
+            }
+
+            color: black;
+        }
+
+        padding: 20px;
+        background: #fff;
+        color: #000;
+        border-radius: 3px;
+        box-shadow: 0 3px 18px rgba(0,0,0,.05);
+        box-sizing: border-box;
+    }
+
+    .rtf-stored-address-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .rtf-stored-address {
+            flex: 1 1 calc((100% / 3));
+            box-sizing: border-box;
+        }
+    }
+
+    .rtf-stored-addresses .box-title {
+        border-bottom: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .rtf-general-account-details, .rtf-stored-addresses, .rtf-stored-address-wrapper {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,52 @@
+<div data-bind="if: getGeneralAccountDetails()" class="rtf-general-account-details box box-rtf">
+    <span data-bind="i18n: 'General Account Details'" class="box-title"></span>
+
+    <div class="box-content" data-bind="foreach: {data: getGeneralAccountDetails(), as: 'accountDetailItem'}">
+        <div data-bind="if: accountDetailItem.value" class="box-content">
+            <span data-bind="text: accountDetailItem.title" class="title"></span>:
+            <span data-bind="text: accountDetailItem.value" class="value"></span>
+        </div>
+    </div>
+</div>
+
+<div data-bind="if: getCustomerAddresses()" class="rtf-stored-addresses-wrapper">
+    <div class="rtf-stored-addresses box box-rtf">
+        <span data-bind="i18n: 'Stored Addresses'" class="box-title"></span>
+    </div>
+
+    <div data-bind="foreach: {data: getCustomerAddresses(), as: 'customerAddressHtml'}" class="rtf-stored-address-wrapper">
+        <div data-bind="html: customerAddressHtml" class="rtf-stored-address box box-rtf"></div>
+    </div>
+</div>
+
+<div class="rtf-placed-orders box box-rtf">
+    <span data-bind="i18n: 'Placed Orders'" class="box-title"></span>
+    <div class="box-content">
+        <div data-bind="if: getCustomerOrders()" class="table-wrapper orders-recent">
+            <table class="data table table-order-items recent" id="my-orders-table">
+                <thead>
+                <tr>
+                    <th data-bind="i18n: 'Order #'" scope="col" class="col id"></th>
+                    <th data-bind="i18n: 'Date'" scope="col" class="col date"></th>
+                    <th data-bind="i18n: 'Action'" scope="col" class="col actions"></th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: {data: getCustomerOrders(), as: 'customerOrder'}">
+                <tr>
+                    <td data-bind="text: customerOrder.orderId" class="col id"></td>
+                    <td data-bind="text: customerOrder.date" class="col date"></td>
+                    <td class="col actions">
+                        <a data-bind="attr: {href: customerOrder.viewOrderUrl}" class="action view">
+                            <span data-bind="i18n: 'View More Info'"></span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <span data-bind="i18n: 'You have placed no orders.', if: !getCustomerOrders()"></span>
+    </div>
+    <div class="rtf-actions rtf-block">
+        <button data-bind="i18n: 'Submit Right to Forget Request', click: onButtonClickRtfRequest" class="action primary action-submit-rtf"></button>
+    </div>
+</div>
