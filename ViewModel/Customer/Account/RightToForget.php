@@ -125,7 +125,7 @@ class RightToForget implements ArgumentInterface
      *
      * @return array[]
      */
-    private function getCustomerAccountDetailsAsArray(): array
+    public function getCustomerAccountDetailsAsArray(): array
     {
         return [
             [
@@ -164,7 +164,7 @@ class RightToForget implements ArgumentInterface
      *
      * @return array
      */
-    private function getCustomerAddressesAsArray(): array
+    public function getCustomerAddressesAsArray(): array
     {
         $customerAddresses = $this->customer->getAddresses();
         $customerAddressesAsHtmlArray = [];
@@ -181,7 +181,7 @@ class RightToForget implements ArgumentInterface
      *
      * @return array
      */
-    private function getCustomerOrdersAsArray(): array
+    public function getCustomerOrdersAsArray(): array
     {
         $ordersAsArray = [];
 
@@ -216,7 +216,7 @@ class RightToForget implements ArgumentInterface
      *
      * @return array
      */
-    private function getActionConfigAsArray(): array
+    public function getActionConfigAsArray(): array
     {
         try {
             return [
