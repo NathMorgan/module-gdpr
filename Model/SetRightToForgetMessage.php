@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Model;
+namespace Tuqiri\GDPR\Model;
 
 use Magento\Framework\Phrase;
-use Ruroc\GDPR\Api\Data\SetRightToForgetMessageInterface;
+use Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface;
 
 class SetRightToForgetMessage implements SetRightToForgetMessageInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Api\Data;
+namespace Tuqiri\GDPR\Api\Data;
 
 use Magento\Framework\Phrase;
 

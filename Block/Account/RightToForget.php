@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Block\Account;
+namespace Tuqiri\GDPR\Block\Account;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Api\Data\CustomerInterface;

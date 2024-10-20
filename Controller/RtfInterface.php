@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Controller;
+namespace Tuqiri\GDPR\Controller;
 
 use Magento\Customer\Controller\AccountInterface;
 

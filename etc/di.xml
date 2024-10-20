@@ -2,8 +2,8 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Ruroc\GDPR\Api\SetRightToForgetInterface"
-                type="Ruroc\GDPR\Model\SetRightToForget" />
-    <preference for="Ruroc\GDPR\Api\Data\SetRightToForgetMessageInterface"
-                type="Ruroc\GDPR\Model\SetRightToForgetMessage" />
+    <preference for="Tuqiri\GDPR\Api\SetRightToForgetInterface"
+                type="Tuqiri\GDPR\Model\SetRightToForget" />
+    <preference for="Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface"
+                type="Tuqiri\GDPR\Model\SetRightToForgetMessage" />
 </config>

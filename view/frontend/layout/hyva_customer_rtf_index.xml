@@ -8,17 +8,17 @@
         <referenceBlock name="rtf-account-details-base" remove="true" />
 
         <referenceContainer name="content">
-            <block class="Ruroc\GDPR\Block\Account\RightToForget"
+            <block class="Tuqiri\GDPR\Block\Account\RightToForget"
                    name="rtf-account-details-hyva"
-                   template="Ruroc_GDPR::hyva/account/rtf/account-details.phtml">
+                   template="Tuqiri_GDPR::hyva/account/rtf/account-details.phtml">
                 <arguments>
-                    <argument name="rightToForgetViewModel" xsi:type="object">Ruroc\GDPR\ViewModel\Customer\Account\RightToForget</argument>
+                    <argument name="rightToForgetViewModel" xsi:type="object">Tuqiri\GDPR\ViewModel\Customer\Account\RightToForget</argument>
                     <argument name="heroiconsOutlineViewModel" xsi:type="object">Hyva\Theme\ViewModel\HeroiconsOutline</argument>
                 </arguments>
             </block>
             <block name="rtf-submit-modal-hyva"
                    after="rtf-account-details-hyva"
-                   template="Ruroc_GDPR::hyva/account/rtf/submit-rtf-modal.phtml">
+                   template="Tuqiri_GDPR::hyva/account/rtf/submit-rtf-modal.phtml">
                 <block name="loading" template="Hyva_Theme::ui/loading.phtml"/>
             </block>
         </referenceContainer>

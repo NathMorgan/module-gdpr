@@ -2,12 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="ruroc"
+        <tab id="tuqiri"
              translate="label"
              sortOrder="250">
-            <label>Ruroc</label>
+            <label>Tuqiri</label>
         </tab>
-        <section id="ruroc"
+        <section id="tuqiri"
                  translate="label"
                  type="text"
                  sortOrder="10"
@@ -16,8 +16,8 @@
                  showInStore="1">
             <class>separator-top</class>
             <label>GDPR</label>
-            <tab>ruroc</tab>
-            <resource>Ruroc_GDPR::config_gdpr</resource>
+            <tab>tuqiri</tab>
+            <resource>Tuqiri_GDPR::config_gdpr</resource>
             <group id="right_to_forget"
                    translate="label"
                    type="text"

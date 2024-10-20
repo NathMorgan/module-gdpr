@@ -1,6 +1,6 @@
 <?php
 
-namespace Ruroc\GDPR\ViewModel\Customer\Account;
+namespace Tuqiri\GDPR\ViewModel\Customer\Account;
 
 use Magento\Customer\Api\CustomerMetadataInterface;
 use Magento\Customer\Api\Data\CustomerInterface;

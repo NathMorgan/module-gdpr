@@ -14,17 +14,17 @@
             </arguments>
         </referenceBlock>
         <referenceContainer name="content">
-            <block class="Ruroc\GDPR\Block\Account\RightToForget"
+            <block class="Tuqiri\GDPR\Block\Account\RightToForget"
                    name="rtf-account-details-base"
-                   template="Ruroc_GDPR::base/account/rtf/account-details.phtml">
+                   template="Tuqiri_GDPR::base/account/rtf/account-details.phtml">
                 <arguments>
-                    <argument name="rightToForgetViewModel" xsi:type="object">Ruroc\GDPR\ViewModel\Customer\Account\RightToForget</argument>
+                    <argument name="rightToForgetViewModel" xsi:type="object">Tuqiri\GDPR\ViewModel\Customer\Account\RightToForget</argument>
                     <argument name="jsLayout" xsi:type="array">
                         <item name="components" xsi:type="array">
                             <item name="rtfwrapper" xsi:type="array">
-                                <item name="component" xsi:type="string">Ruroc_GDPR/js/view/account/rtf/account-details</item>
+                                <item name="component" xsi:type="string">Tuqiri_GDPR/js/view/account/rtf/account-details</item>
                                 <item name="config" xsi:type="array">
-                                    <item name="template" xsi:type="string">Ruroc_GDPR/account-details</item>
+                                    <item name="template" xsi:type="string">Tuqiri_GDPR/account-details</item>
                                 </item>
                             </item>
                         </item>

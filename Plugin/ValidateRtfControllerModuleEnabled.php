@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Plugin;
+namespace Tuqiri\GDPR\Plugin;
 
 use Closure;
 use Magento\Customer\Model\Url as CustomerUrl;
 use Magento\Framework\App\Response\Http as HttpResponse;
-use Ruroc\GDPR\Controller\RtfInterface;
-use Ruroc\GDPR\Scope\Config;
+use Tuqiri\GDPR\Controller\RtfInterface;
+use Tuqiri\GDPR\Scope\Config;
 
 class ValidateRtfControllerModuleEnabled
 {

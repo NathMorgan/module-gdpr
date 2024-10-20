@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Model;
+namespace Tuqiri\GDPR\Model;
 
 use Magento\Backend\Model\UrlInterface as BackendUrlInterface;
 use Magento\Framework\App\Area;
@@ -11,7 +11,7 @@ use Magento\Framework\Exception\MailException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Store\Model\StoreManagerInterface;
-use Ruroc\GDPR\Scope\Config as ScopeConfig;
+use Tuqiri\GDPR\Scope\Config as ScopeConfig;
 
 class RightToForget
 {

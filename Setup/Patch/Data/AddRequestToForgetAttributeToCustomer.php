@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Setup\Patch\Data;
+namespace Tuqiri\GDPR\Setup\Patch\Data;
 
 use Magento\Customer\Api\CustomerMetadataInterface;
 use Magento\Customer\Model\Customer;
@@ -13,7 +13,7 @@ use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
-use Ruroc\GDPR\Model\RightToForget;
+use Tuqiri\GDPR\Model\RightToForget;
 
 class AddRequestToForgetAttributeToCustomer implements DataPatchInterface, PatchRevertableInterface
 {

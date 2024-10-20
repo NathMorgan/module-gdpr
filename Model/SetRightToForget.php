@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Model;
+namespace Tuqiri\GDPR\Model;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Psr\Log\LoggerInterface;
-use Ruroc\GDPR\Api\Data\SetRightToForgetMessageInterface;
-use Ruroc\GDPR\Api\SetRightToForgetInterface;
+use Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface;
+use Tuqiri\GDPR\Api\SetRightToForgetInterface;
 
 use Magento\Framework\Exception\LocalizedException;
 

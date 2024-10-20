@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Controller\Rtf;
+namespace Tuqiri\GDPR\Controller\Rtf;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Helper\Session\CurrentCustomer;
@@ -14,8 +14,8 @@ use Magento\Framework\Controller\Result\RedirectFactory as ResultRedirectFactory
 use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
 use Magento\Framework\Message\Manager as MessageManager;
 use Psr\Log\LoggerInterface;
-use Ruroc\GDPR\Controller\RtfInterface;
-use Ruroc\GDPR\Model\RightToForget;
+use Tuqiri\GDPR\Controller\RtfInterface;
+use Tuqiri\GDPR\Model\RightToForget;
 
 class SubmitRequest implements RtfInterface, HttpPostActionInterface
 {
