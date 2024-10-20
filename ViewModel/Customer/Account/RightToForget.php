@@ -114,7 +114,7 @@ class RightToForget implements ArgumentInterface
             'generalAccountDetails' => $this->getCustomerAccountDetailsAsArray(),
             'addresses' => $this->getCustomerAddressesAsArray(),
             'orders' => $this->getCustomerOrdersAsArray(),
-            'actionConfig' => $this->getActionConfigAsArray(),
+            'submitRightToForgetActionUrl' => $this->getSubmitRtfRequestUrl(),
         ]);
     }
 
@@ -211,23 +211,9 @@ class RightToForget implements ArgumentInterface
         return $ordersAsArray;
     }
 
-    /**
-     * Get right to forget button action config as array
-     *
-     * @return array
-     */
-    public function getActionConfigAsArray(): array
+    public function getSubmitRtfRequestUrl(): string
     {
-        try {
-            return [
-                'submitRtfRequestUrl' => $this->urlBuilder->getUrl('customer/rtf/submitrequest'),
-                'form_key' => $this->formKey->getFormKey(),
-            ];
-        } catch (\Exception $e) {
-            // Log the critical for debugging
-            $this->logger->critical($e);
-            return [];
-        }
+        return $this->urlBuilder->getUrl('rest/V1/customers/me/right-to-forget');
     }
 
     /**
