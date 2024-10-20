@@ -10,6 +10,7 @@ use Magento\Framework\Message\Manager as MessageManager;
 use Psr\Log\LoggerInterface;
 use Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface;
 use Tuqiri\GDPR\Api\SetRightToForgetInterface;
+use Tuqiri\GDPR\Model\Data\SetRightToForgetMessage;
 
 class SetRightToForget implements SetRightToForgetInterface
 {

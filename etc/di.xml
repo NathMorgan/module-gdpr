@@ -5,5 +5,5 @@
     <preference for="Tuqiri\GDPR\Api\SetRightToForgetInterface"
                 type="Tuqiri\GDPR\Model\SetRightToForget" />
     <preference for="Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface"
-                type="Tuqiri\GDPR\Model\SetRightToForgetMessage" />
+                type="Tuqiri\GDPR\Model\Data\SetRightToForgetMessage" />
 </config>
