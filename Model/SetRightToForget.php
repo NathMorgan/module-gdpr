@@ -54,7 +54,7 @@ class SetRightToForget implements SetRightToForgetInterface
             $customer = $this->customerRepository->getById($customerId);
 
             // If customer has already submitted a right to forget request then ignore and send feedback back to customer
-            if ($customer->getCustomAttribute(EmailNotification::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE)->getValue()) {
+            if ($customer->getCustomAttribute(self::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE)->getValue()) {
 
                 $errorMessage = __(
                     'Right to Forget request already sent. Please contact us if you require assistance.'
