@@ -47,8 +47,9 @@ $modalViewModel = $viewModels->require(Modal::class);
                 })
                     .then(response => response.json())
                     .then(result => {
+                        this.isLoading = false;
+
                         if (result.message.length) {
-                            this.isLoading = false;
                             return dispatchMessages([{
                                 text: result.message,
                                 type: result.success ? 'success' : 'error'
