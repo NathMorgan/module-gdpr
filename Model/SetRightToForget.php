@@ -9,6 +9,8 @@ use Psr\Log\LoggerInterface;
 use Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface;
 use Tuqiri\GDPR\Api\SetRightToForgetInterface;
 
+use Magento\Framework\Message\Manager as MessageManager;
+
 use Magento\Framework\Exception\LocalizedException;
 
 class SetRightToForget implements SetRightToForgetInterface
@@ -22,6 +24,9 @@ class SetRightToForget implements SetRightToForgetInterface
     /** @var CustomerRepositoryInterface */
     protected CustomerRepositoryInterface $customerRepository;
 
+    /** @var MessageManager */
+    protected MessageManager $messageManager;
+
     /**
      * @param RightToForget $rightToForget
      * @param LoggerInterface $logger
@@ -31,10 +36,12 @@ class SetRightToForget implements SetRightToForgetInterface
         RightToForget $rightToForget,
         LoggerInterface $logger,
         CustomerRepositoryInterface $customerRepository,
+        MessageManager $messageManager,
     ) {
         $this->rightToForget = $rightToForget;
         $this->logger = $logger;
         $this->customerRepository = $customerRepository;
+        $this->messageManager = $messageManager;
     }
 
     /**
@@ -47,10 +54,15 @@ class SetRightToForget implements SetRightToForgetInterface
 
             // If customer has already submitted a right to forget request then ignore and send feedback back to customer
             if ($customer->getCustomAttribute(RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE)->getValue()) {
-                return new SetRightToForgetMessage(
-                    __('Right to Forget request already sent. Please contact us if you require assistance.'),
-                    false
+
+                $errorMessage = __(
+                    'Right to Forget request already sent. Please contact us if you require assistance.'
                 );
+
+                // Use message manager for non-hyva Magento installs
+                $this->messageManager->addErrorMessage($errorMessage);
+
+                return new SetRightToForgetMessage($errorMessage, false);
             }
 
             // Send email to configured location and set right to forget customer attribute
@@ -61,14 +73,19 @@ class SetRightToForget implements SetRightToForgetInterface
             // Log the critical for debugging
             $this->logger->critical($e);
 
-            throw new LocalizedException(
-                __('Error submitting Right to Forget request. Please try again later or contact us.')
-            );
+            $errorMessage = __('Error submitting Right to Forget request. Please try again later or contact us.');
+
+            // Use message manager for non-hyva Magento installs
+            $this->messageManager->addErrorMessage($errorMessage);
+
+            throw new LocalizedException($errorMessage);
         }
 
-        return new SetRightToForgetMessage(
-            __('Right to Forget request sent.'),
-            true
-        );
+        $successMessage = __('Right to Forget request has been sent.');
+
+        // Use message manager for non-hyva Magento installs
+        $this->messageManager->addSuccessMessage($successMessage);
+
+        return new SetRightToForgetMessage($successMessage, true);
     }
 }
