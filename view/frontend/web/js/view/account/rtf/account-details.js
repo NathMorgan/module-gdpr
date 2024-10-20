@@ -10,7 +10,7 @@ define([
         customerRightToForgetConfig: window.rtfConfig,
 
         onButtonClickRtfRequest: function () {
-            var actionsConfig = this.getActionsConfig();
+            const submitRightToForgetActionUrl = this.getSubmitRightToForgetActionUrl();
 
             confirm({
                 title: 'Confirm Right to Forget',
@@ -19,10 +19,7 @@ define([
                     confirm: function () {
                         $.ajax({
                             showLoader: true,
-                            url: actionsConfig.submitRtfRequestUrl,
-                            data: {
-                                form_key: actionsConfig.form_key,
-                            },
+                            url: submitRightToForgetActionUrl,
                             type: "POST",
                             success: function (data) {
                                 // No need to log to the customer as MessageManager already does so
@@ -52,8 +49,8 @@ define([
             return this.customerRightToForgetConfig.orders;
         },
 
-        getActionsConfig: function () {
-            return this.customerRightToForgetConfig.actionConfig;
+        getSubmitRightToForgetActionUrl: function () {
+            return this.customerRightToForgetConfig.submitRightToForgetActionUrl;
         }
     });
 });

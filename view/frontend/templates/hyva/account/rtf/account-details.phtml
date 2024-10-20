@@ -1,0 +1,112 @@
+<?php
+
+declare(strict_types=1);
+
+/** @var \Tuqiri\GDPR\Block\Account\RightToForget $block  */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Tuqiri\GDPR\ViewModel\Customer\Account\RightToForget $rightToForgetViewModel */
+/** @var \Hyva\Theme\ViewModel\HeroiconsOutline $heroiconsOutlineViewModel */
+
+$currentCustomer = $block->getCustomerRepository();
+$rightToForgetViewModel = $block->getData('rightToForgetViewModel');
+$heroiconsOutlineViewModel = $block->getData('heroiconsOutlineViewModel');
+$rightToForgetViewModel->setCustomer($currentCustomer);
+$customerAccountDetails = $rightToForgetViewModel->getCustomerAccountDetailsAsArray();
+$customerAddresses = $rightToForgetViewModel->getCustomerAddressesAsArray();
+$orders = $rightToForgetViewModel->getCustomerOrdersAsArray();
+?>
+<div class="block block-rtf-general-account-details card mt-4">
+    <div class="block-title my-4 flex justify-between items-center">
+        <h2 class="text-2xl block">
+            <?= $escaper->escapeHtml(__('General Account Details')) ?>
+        </h2>
+    </div>
+    <div>
+        <?php foreach ($customerAccountDetails as $customerAccountDetail): ?>
+            <?php if ($customerAccountDetail['value']): ?>
+                <div data-bind="if: accountDetailItem.value">
+                    <span class="title"><?= $escaper->escapeHtml($customerAccountDetail['title']) ?></span>:
+                    <span class="value"><?= $escaper->escapeHtml($customerAccountDetail['value']) ?></span>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<div class="block block-rtf-stored-addresses mt-4">
+    <div class="block-title my-4 flex justify-between items-center card">
+        <h2 class="text-2xl block">
+            <?= $escaper->escapeHtml(__('Stored Addresses')) ?>
+        </h2>
+    </div>
+    <div class="block-content">
+        <div class="flex flex-wrap justify-between -m-4">
+            <?php foreach ($customerAddresses as $customerAddress): ?>
+                <div class="lg:w-1/2 w-full p-4">
+                    <div class="flex p-8 sm:flex-row flex-col h-full card">
+                        <div class="grow">
+                            <address><?= /** @noEscape */ $customerAddress ?></address>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<div class="block block-rtf-orders mt-4 card">
+    <div class="block-title my-4 flex justify-between items-center">
+        <h2 class="text-2xl block">
+            <?= $escaper->escapeHtml(__('Placed Orders')) ?>
+        </h2>
+    </div>
+    <?php if ($orders && count($orders)): ?>
+        <div class="overflow-x-auto mb-4">
+            <table
+                id="my-orders-table"
+                class="w-full sm:table-fixed lg:table-auto"
+                aria-labelledby="my-orders-title"
+            >
+                <thead class="text-sm text-secondary">
+                <tr>
+                    <th class="p-2 text-start">
+                        <?= $escaper->escapeHtml(__('Order #')) ?>
+                    </th>
+                    <th class="p-2 text-start hidden lg:table-cell">
+                        <?= $escaper->escapeHtml(__('Date')) ?>
+                    </th>
+                    <th class="p-2 text-center">
+                        <?= $escaper->escapeHtml(__('View')) ?>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($orders as $order): ?>
+                    <tr class="align-top even:bg-container-darker">
+                        <th class="p-2 text-start font-normal">
+                            <?= $escaper->escapeHtml($order['orderId']) ?>
+                        </th>
+                        <td class="p-2 hidden lg:table-cell">
+                            <?= $escaper->escapeHtml($order['date']); ?>
+                        </td>
+                        <td class="p-2">
+                            <div class="flex items-center justify-evenly">
+                                <a
+                                    href="<?= $escaper->escapeUrl($order['viewOrderUrl']) ?>"
+                                    class="inline-block text-sm underline text-secondary-darker"
+                                    title="<?= $escaper->escapeHtmlAttr(__('View Order')) ?>"
+                                    aria-label="<?= $escaper->escapeHtmlAttr(__('View order') . ' ' . ltrim($order['orderId'], '0')) ?>"
+                                >
+                                    <?= $heroiconsOutlineViewModel->eyeHtml('', 24, 24, ['aria-hidden' => 'true']) ?>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="message info empty"><span><?= $escaper->escapeHtml($block->getEmptyOrdersMessage()) ?></span></div>
+    <?php endif ?>
+</div>

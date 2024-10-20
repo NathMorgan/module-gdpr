@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
         <route id="customer" frontName="customer">
-             <module name="Ruroc_GDPR" before="Magento_Customer" />
+             <module name="Tuqiri_GDPR" before="Magento_Customer" />
         </route>
     </router>
 </config>

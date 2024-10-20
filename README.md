@@ -1,8 +1,8 @@
-# Ruroc_GDPR
+# Tuqiri_GDPR
 
 This is a Magento 2 technical test module
 
-Ruroc\GDPR module allows customers to see what data the store collects about them and to request to be 'Forgotten' via a
+Tuqiri\GDPR module allows customers to see what data the store collects about them and to request to be 'Forgotten' via a
 'Right to be forgotten' request
 
 The email sent to the store owner that is configured via the module config does not send any customer data only a `CustomerId`
@@ -17,7 +17,7 @@ this ID is then used to generate a link to visit the customer via the customer e
 
 Config Location:
 
-`Stores` -> `Configuration` -> `Ruroc` -> `GDPR`
+`Stores` -> `Configuration` -> `Tuqiri` -> `GDPR`
 
 Default Values:
 

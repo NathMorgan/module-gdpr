@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Controller\Rtf;
+namespace Tuqiri\GDPR\Controller\Rtf;
 
 use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory as ResultPageFactory;
-use Ruroc\GDPR\Controller\RtfInterface;
+use Tuqiri\GDPR\Controller\RtfInterface;
 
 class Index implements RtfInterface, HttpGetActionInterface
 {

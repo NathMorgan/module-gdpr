@@ -6,6 +6,6 @@
               label="GDPR Right to Forget"
               file="gdpr_right_to_forget.html"
               type="html"
-              module="Ruroc_GDPR"
+              module="Tuqiri_GDPR"
               area="frontend"/>
 </config>

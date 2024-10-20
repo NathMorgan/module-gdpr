@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ruroc\GDPR\Setup\Patch\Data;
+namespace Tuqiri\GDPR\Setup\Patch\Data;
 
 use Magento\Customer\Api\CustomerMetadataInterface;
 use Magento\Customer\Model\Customer;
@@ -13,7 +13,7 @@ use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
-use Ruroc\GDPR\Model\RightToForget;
+use Tuqiri\GDPR\Model\SetRightToForget;
 
 class AddRequestToForgetAttributeToCustomer implements DataPatchInterface, PatchRevertableInterface
 {
@@ -51,7 +51,7 @@ class AddRequestToForgetAttributeToCustomer implements DataPatchInterface, Patch
 
         $customerSetup->addAttribute(
             CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
-            RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE,
+            SetRightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE,
             [
                 'type' => 'int',
                 'label' => 'Requested Right To Forget',
@@ -70,14 +70,14 @@ class AddRequestToForgetAttributeToCustomer implements DataPatchInterface, Patch
             CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
             CustomerMetadataInterface::ATTRIBUTE_SET_ID_CUSTOMER,
             null,
-            RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE
+            SetRightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE
         );
 
         $attribute = $customerSetup
             ->getEavConfig()
             ->getAttribute(
                 CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
-                RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE
+                SetRightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE
             );
 
         $attribute->setData('used_in_forms', [
@@ -94,7 +94,7 @@ class AddRequestToForgetAttributeToCustomer implements DataPatchInterface, Patch
     {
         /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $customerSetup->removeAttribute(Customer::ENTITY, RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE);
+        $customerSetup->removeAttribute(Customer::ENTITY, SetRightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE);
     }
 
     public static function getDependencies()
