@@ -5,18 +5,16 @@ declare(strict_types=1);
 namespace Tuqiri\GDPR\Model;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Message\Manager as MessageManager;
 use Psr\Log\LoggerInterface;
 use Tuqiri\GDPR\Api\Data\SetRightToForgetMessageInterface;
 use Tuqiri\GDPR\Api\SetRightToForgetInterface;
 
-use Magento\Framework\Message\Manager as MessageManager;
-
-use Magento\Framework\Exception\LocalizedException;
-
 class SetRightToForget implements SetRightToForgetInterface
 {
-    /** @var RightToForget */
-    protected RightToForget $rightToForget;
+    /** @var EmailNotification */
+    protected EmailNotification $emailNotification;
 
     /** @var LoggerInterface */
     protected LoggerInterface $logger;
@@ -27,18 +25,21 @@ class SetRightToForget implements SetRightToForgetInterface
     /** @var MessageManager */
     protected MessageManager $messageManager;
 
+    public const RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE = 'right_to_forget';
+
     /**
-     * @param RightToForget $rightToForget
+     * @param EmailNotification $emailNotification
      * @param LoggerInterface $logger
      * @param CustomerRepositoryInterface $customerRepository
+     * @param MessageManager $messageManager
      */
     public function __construct (
-        RightToForget $rightToForget,
+        EmailNotification $emailNotification,
         LoggerInterface $logger,
         CustomerRepositoryInterface $customerRepository,
         MessageManager $messageManager,
     ) {
-        $this->rightToForget = $rightToForget;
+        $this->emailNotification = $emailNotification;
         $this->logger = $logger;
         $this->customerRepository = $customerRepository;
         $this->messageManager = $messageManager;
@@ -53,7 +54,7 @@ class SetRightToForget implements SetRightToForgetInterface
             $customer = $this->customerRepository->getById($customerId);
 
             // If customer has already submitted a right to forget request then ignore and send feedback back to customer
-            if ($customer->getCustomAttribute(RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE)->getValue()) {
+            if ($customer->getCustomAttribute(EmailNotification::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE)->getValue()) {
 
                 $errorMessage = __(
                     'Right to Forget request already sent. Please contact us if you require assistance.'
@@ -66,8 +67,10 @@ class SetRightToForget implements SetRightToForgetInterface
             }
 
             // Send email to configured location and set right to forget customer attribute
-            $this->rightToForget->sendRightToForgetEmail((int) $customer->getId());
-            $customer->setCustomAttribute(RightToForget::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE, 1);
+            $this->emailNotification->rightToForgetAdmin((int) $customer->getId());
+
+            // Set right to forget attribute to customer to prevent duplicate requests
+            $customer->setCustomAttribute(self::RIGHT_TO_FORGET_CUSTOMER_ATTRIBUTE, 1);
             $this->customerRepository->save($customer);
         } catch (\Exception $e) {
             // Log the critical for debugging
