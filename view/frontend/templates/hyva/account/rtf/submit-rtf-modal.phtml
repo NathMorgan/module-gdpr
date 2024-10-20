@@ -1,0 +1,61 @@
+<?php
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\Modal;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+$modalViewModel = $viewModels->require(Modal::class);
+?>
+<div class="block block-rtf-submit mt-4" x-data="hyva.modal()">
+    <div x-data="initSubmitRightToForgetRequestModal()">
+        <?php $message = $escaper->escapeHtml(__('Do you wish to submit a Right to Forget request?')) ?>
+        <?php $confirmation = $modalViewModel->confirm($message) ?>
+        <button @click="<?= /** @noEscape */ $confirmation->getShowJs() ?>.then(ok => ok && submitRightToForgetRequest())"
+                type="button"
+                class="action submitrighttoforget btn btn-primary text-sm"
+                aria-haspopup="dialog">
+            <?= $escaper->escapeHtml(__('Confirm Right to Forget')) ?>
+        </button>
+        <?= /** @noEscape */ $confirmation ?>
+        <?= $block->getChildHtml('loading') ?>
+    </div>
+</div>
+<script>
+    function initSubmitRightToForgetRequestModal() {
+        return {
+            isLoading: false,
+
+            submitRightToForgetRequest() {
+                this.isLoading = true;
+
+                const restBaseUrl = BASE_URL + 'rest/' + CURRENT_STORE_CODE;
+                fetch(`${restBaseUrl}/V1/customers/me/right-to-forget`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.message.length) {
+                            this.isLoading = false;
+                            return dispatchMessages([{
+                                text: result.message,
+                                type: result.success ? 'success' : 'error'
+                            }]);
+                        }
+                    })
+            }
+        }
+    }
+</script>
