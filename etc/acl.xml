@@ -7,7 +7,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Ruroc_GDPR::config_gdpr" title="Ruroc GDPR Section" translate="title" sortOrder="60" />
+                            <resource id="Tuqiri_GDPR::config_gdpr" title="Tuqiri GDPR Section" translate="title" sortOrder="60" />
                         </resource>
                     </resource>
                 </resource>

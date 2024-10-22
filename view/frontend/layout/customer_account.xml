@@ -4,7 +4,7 @@
     <body>
         <referenceBlock name="customer_account_navigation">
             <block class="Magento\Customer\Block\Account\SortLinkInterface"
-                   ifconfig="ruroc/right_to_forget/enabled"
+                   ifconfig="tuqiri/right_to_forget/enabled"
                    name="customer-account-navigation-right-to-forget-link">
                 <arguments>
                     <argument name="path" xsi:type="string">customer/rtf/index</argument>
