@@ -1,12 +1,12 @@
 {
-    "name": "techdemo/module-gdpr",
-    "description": "Magento 2 Right to Forget technical test module",
+    "name": "tuqiri/module-gdpr",
+    "description": "Magento 2 Right to Forget module",
     "type": "magento2-module",
     "license": [],
     "config": {
         "sort-packages": true
     },
-    "version": "1.0",
+    "version": "1.2",
     "require": {
         "php": "~8.1.0||~8.2.0||~8.3.0"
     },
