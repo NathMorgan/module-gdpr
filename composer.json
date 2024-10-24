@@ -1,5 +1,5 @@
 {
-    "name": "techdemo/module-gdpr",
+    "name": "tuqiri/module-gdpr",
     "description": "Magento 2 Right to Forget technical test module",
     "type": "magento2-module",
     "license": [],
