@@ -235,7 +235,7 @@ class RightToForget implements ArgumentInterface
      * @param int $genderId
      * @return string
      */
-    private function getCustomerGenderAsString(int $genderId): string
+    private function getCustomerGenderAsString(?int $genderId): string
     {
         try {
             /** @var Attribute $genderAttribute */
